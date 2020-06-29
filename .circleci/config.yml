@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: Show Current Branch
-          command: echo ${CURRENT_BRANCH}
+          command: echo ${CIRCLE_BRANCH}
       - restore_cache:
           keys:
             - app-{{ checksum "package.json" }}
@@ -30,7 +30,7 @@ jobs:
       - checkout
       - run:
           name: Show Current Branch
-          command: echo ${CURRENT_BRANCH}
+          command: echo ${CIRCLE_BRANCH}
       - run:
           name: Installing AWS CLI
           working_directory: /
@@ -57,7 +57,7 @@ jobs:
       - checkout
       - run:
           name: Show Current Branch
-          command: echo ${CURRENT_BRANCH}
+          command: echo ${CIRCLE_BRANCH}
       - run:
           name: Installing AWS CLI
           working_directory: /
@@ -76,7 +76,7 @@ jobs:
       - run:
           name: Deploy to AWS Cloudfront
           command: |
-            aws configure set preview.cloudfront
+            aws configure set preview.cloudfront true
             aws cloudfront create-invalidation --distribution-id ${PRODUCTION_DISTRIBUTION_ID} --paths /\*
 workflows:
   build_and_deploy:
