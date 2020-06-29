@@ -48,7 +48,7 @@ jobs:
              echo "Build successful"
       - run:
           name: Deploy to AWS S3
-          command: aws --region ${AWS_REGION} s3 sync ~repo/build s3://${AWS_BUCKET_PRODUCTION} --delete
+          command: aws --region ${AWS_REGION} s3 sync ~/repo/build s3://${AWS_BUCKET_PRODUCTION} --delete
   deploy_to_aws_cloudfront:
     docker:
       - image: circleci/node:13
