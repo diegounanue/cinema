@@ -4,7 +4,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circle/node:13.0.0
+      - image: circle/node:13
     working_directory: ~/repo
     steps:
       - checkout
@@ -24,7 +24,7 @@ jobs:
           key: app-{{ checksum "package.json" }}
   deploy_to_aws_s3:
     docker:
-      - image: circle/node:13.0.0
+      - image: circle/node:13
     working_directory: ~/repo
     steps:
       - checkout
@@ -51,7 +51,7 @@ jobs:
           command: aws --region ${AWS_REGION} s3 sync ~repo/build s3//${AWS_BUCKET_PRODUCTION} --delete
   deploy_to_aws_cloudfront:
     docker:
-      - image: circle/node:13.0.0
+      - image: circle/node:13
     working_directory: ~/repo
     steps:
       - checkout
